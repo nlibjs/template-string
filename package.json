@@ -18,13 +18,10 @@
   "main": "lib/index.js",
   "scripts": {
     "eslint": "eslint --max-warnings 0 'lib/**/*.js' 'test/**/*.js'",
-    "test": "node test && npm run eslint",
-    "test_coverage": "istanbul cover test && npm run eslint"
+    "test": "node test && npm run eslint"
   },
   "devDependencies": {
-    "@nlib/lint": "0.0.5",
-    "@nlib/test": "^1.0.2",
-    "eslint": "^4.10.0",
-    "istanbul": "^1.1.0-alpha.1"
+    "@nlib/lint": "0.0.6",
+    "@nlib/test": "^1.0.2"
   }
 }

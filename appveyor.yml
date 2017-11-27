@@ -1,17 +1,19 @@
 environment:
   matrix:
-    - nodejs_version: '9'
-    - nodejs_version: '8'
-    - nodejs_version: '7'
-    - nodejs_version: '6'
+  - nodejs_version: '9'
+  - nodejs_version: '8'
+  - nodejs_version: '7'
+  - nodejs_version: '6'
 install:
-  - ps: Install-Product node $env:nodejs_version
-  - node --version
-  - npm --version
-  - npm install
+- ps: Install-Product node $env:nodejs_version
+- node --version
+- npm --version
+- npm install -g eslint istanbul
+- npm install
 test_script:
-  - npm run test_coverage
+- istanbul cover test
+- npm run eslint
 on_success:
-  - npm install -g codecov
-  - codecov
+- npm install -g codecov
+- codecov
 build: off
