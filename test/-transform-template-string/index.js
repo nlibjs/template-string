@@ -25,7 +25,7 @@ test('TransformTemplateString', (test) => {
 			[
 				[
 					' <value>fo',
-					'o</value> </val',
+					'o.foo</value> </val',
 					'ue>[bar]<value> baz<',
 					'/value> </value>',
 				],
@@ -35,8 +35,10 @@ test('TransformTemplateString', (test) => {
 				},
 			],
 			{
-				foo({baz}) {
-					return baz * 3;
+				foo: {
+					foo({baz}) {
+						return baz * 3;
+					},
 				},
 				bar({baz}) {
 					return baz * 4;

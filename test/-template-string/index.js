@@ -6,17 +6,15 @@ test('TemplateString', (test) => {
 
 	[
 		[
-			[' [foo] [[bar]] baz '],
+			[' [foo] [[bar + 1]] baz '],
 			[
-				[{foo: 1, bar: 2}, ' 1 [2] baz '],
+				[{foo: 1, bar: 2}, ' 1 [3] baz '],
 				[
 					{
 						foo({baz}) {
 							return baz * 3;
 						},
-						bar({baz}) {
-							return baz * 4;
-						},
+						bar: -5,
 						baz: -1,
 					},
 					' -3 [-4] baz ',
@@ -25,7 +23,7 @@ test('TemplateString', (test) => {
 		],
 		[
 			[
-				' <value>foo</value> </value>[bar]<value> baz</value> </value>',
+				' <value>foo.foo</value> </value>[bar]<value> baz</value> </value>',
 				{},
 				{
 					open: '<value>',
@@ -33,11 +31,13 @@ test('TemplateString', (test) => {
 				},
 			],
 			[
-				[{foo: 1, bar: 2}, ' 1 </value>[bar]undefined </value>'],
+				[{foo: {foo: 1}, bar: 2}, ' 1 </value>[bar]undefined </value>'],
 				[
 					{
-						foo({baz}) {
-							return baz * 3;
+						foo: {
+							foo({baz}) {
+								return baz * 3;
+							},
 						},
 						bar({baz}) {
 							return baz * 4;
