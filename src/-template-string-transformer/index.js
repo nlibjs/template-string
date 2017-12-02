@@ -3,7 +3,7 @@ const {Transform} = require('stream');
 const parse = require('../parse');
 const compileString = require('../compile-string');
 
-module.exports = class TransformTemplateString extends Transform {
+module.exports = class TemplateStringTransformer extends Transform {
 
 	constructor(
 		context,

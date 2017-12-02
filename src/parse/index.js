@@ -1,4 +1,4 @@
-function parse(
+module.exports = function parse(
 	template,
 	{
 		open = '[',
@@ -83,6 +83,4 @@ function parse(
 	function read() {
 		return buffer.splice(0, buffer.length).join('');
 	}
-}
-
-module.exports = parse;
+};
