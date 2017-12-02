@@ -1,5 +1,6 @@
 const parse = require('../parse');
 const compileString = require('../compile-string');
+
 module.exports = class TemplateString {
 
 	constructor(template, baseContext, options) {
@@ -7,7 +8,7 @@ module.exports = class TemplateString {
 		baseContext = baseContext || {};
 		const keys = Object.keys(baseContext);
 		return Object.assign(
-			function generateString(context = {}) {
+			(context = {}) => {
 				for (const key of keys) {
 					if (!(key in context)) {
 						context[key] = baseContext[key];
