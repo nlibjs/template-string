@@ -12,7 +12,6 @@ install:
 - npm install
 test_script:
 - istanbul cover test
-- npm run eslint
 on_success:
 - npm install -g codecov
 - codecov
