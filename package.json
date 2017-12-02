@@ -17,7 +17,7 @@
   "repository": "nlibjs/template-string",
   "main": "src/index.js",
   "scripts": {
-    "eslint": "nlib-lint src test",
+    "lint": "nlib-lint src test",
     "test": "node test",
     "test_coverage": "istanbul cover test"
   },
