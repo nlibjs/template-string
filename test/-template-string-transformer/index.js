@@ -39,7 +39,11 @@ const tests = [
 				},
 			},
 			bar({baz}) {
-				return baz * 4;
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(baz * 4);
+					}, 100);
+				});
 			},
 			baz: -1,
 		},

@@ -1,7 +1,7 @@
 const {StringDecoder} = require('string_decoder');
 const {Transform} = require('stream');
-const parse = require('../parse');
-const compileString = require('../compile-string');
+const tokenize = require('../tokenize');
+const getString = require('../get-string');
 
 module.exports = class TemplateStringTransformer extends Transform {
 
@@ -30,29 +30,55 @@ module.exports = class TemplateStringTransformer extends Transform {
 	}
 
 	_transform(chunk, encoding, callback) {
-		for (const char of this.decoder.write(chunk)) {
+		this.consume([...this.decoder.write(chunk)], callback);
+	}
+
+	consume(chars, callback) {
+		while (0 < chars.length) {
+			const char = chars.shift();
 			switch (char) {
 			case '\r':
 			case '\n':
-				this.push(this.flush());
-				this.push(char);
-				break;
+				return this.flush()
+				.then(() => {
+					this.push(char);
+					this.consume(chars, callback);
+				})
+				.catch(callback);
 			default:
 				this.chars.push(char);
 			}
 		}
 		callback();
+		return Promise.resolve();
 	}
 
 	_flush(callback) {
-		this.push(this.flush());
-		callback();
+		this.flush()
+		.then(() => {
+			callback();
+		})
+		.catch(callback);
 	}
 
 	flush() {
-		const {chars, marks} = this;
+		const {context, chars, marks} = this;
 		this.chars = [];
-		return compileString(parse(chars, marks), this.context);
+		const parser = tokenize(chars, marks);
+		this.push(parser.next().value);
+		const next = () => {
+			const {value, done} = parser.next();
+			if (done) {
+				return Promise.resolve();
+			}
+			return Promise.resolve(getString(context, value))
+			.then((string) => {
+				this.push(string);
+				this.push(parser.next().value);
+				return next();
+			});
+		};
+		return next();
 	}
 
 };

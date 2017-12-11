@@ -1,7 +1,7 @@
 # @nlib/template-string
 
 [![Build Status](https://travis-ci.org/nlibjs/template-string.svg?branch=master)](https://travis-ci.org/nlibjs/template-string)
-[![Build status](https://ci.appveyor.com/api/projects/status/tqb8mq85awg4kf5b/branch/master?svg=true)](https://ci.appveyor.com/project/kei-ito/template-string/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/nlibjs/template-string?branch=mater&svg=true)](https://ci.appveyor.com/project/kei-ito/template-string/branch/master)
 [![codecov](https://codecov.io/gh/nlibjs/template-string/branch/master/graph/badge.svg)](https://codecov.io/gh/nlibjs/template-string)
 [![dependencies Status](https://david-dm.org/nlibjs/template-string/status.svg)](https://david-dm.org/nlibjs/template-string)
 [![devDependencies Status](https://david-dm.org/nlibjs/template-string/dev-status.svg)](https://david-dm.org/nlibjs/template-string?type=dev)

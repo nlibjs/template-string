@@ -1,10 +1,10 @@
 const parse = require('../parse');
-const compileString = require('../compile-string');
+const getString = require('../get-string');
 
 module.exports = class TemplateString {
 
-	constructor(template, baseContext, options) {
-		const parsed = parse(template, options);
+	constructor(template, baseContext, options = {}) {
+		const {strings, values} = parse(template, options);
 		baseContext = baseContext || {};
 		const keys = Object.keys(baseContext);
 		return Object.assign(
@@ -14,10 +14,11 @@ module.exports = class TemplateString {
 						context[key] = baseContext[key];
 					}
 				}
-				return compileString(parsed, context);
+				return `${strings[0]}${values.map((key, index) => {
+					return `${getString(context, key)}${strings[index + 1]}`;
+				}).join('')}`;
 			},
-			{baseContext},
-			parsed
+			{baseContext, strings, values}
 		);
 	}
 

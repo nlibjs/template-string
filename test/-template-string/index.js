@@ -4,7 +4,7 @@ const {TemplateString} = require('../..');
 
 const templates = [
 	[
-		[' [foo] [[bar + 1]] baz '],
+		[' [foo] \\[[bar + 1]\\] baz '],
 		[
 			[{foo: 1, bar: 2}, ' 1 [3] baz '],
 			[
