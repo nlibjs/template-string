@@ -5,10 +5,10 @@ node_js:
 - '7'
 - '6'
 install:
-- npm install -g eslint istanbul
 - npm install
+- npm install -g eslint nyc
 script:
-- istanbul cover test
+- npm run test_coverage
 - npm run lint
 after_success:
 - npm install -g codecov
@@ -21,6 +21,3 @@ deploy:
   on:
     tags: true
     repo: nlibjs/template-string
-notifications:
-  slack:
-    secure: su461XsR47EpNkiPYPAM46qu6MFH2odXgnsrK+j1Pe3V79JC2bohgcERdyOD2wqXPJIvtz9HH0HzTTdznTW/NphAhEKHsF+D7uqL1hZk2HGG66aQ01UPPZroudQuIZ5Dj8QK3/3IXpJpAE8g8cLFrOuB2yX86kK+A8RgsINVG/qzKIZikP48BcNVqJz6W6FhIV2Gt3avtPB+1T/uw33EzalJ/T4q6Bnd4s5YCg0FtydaVR1oc67BEKqdyWT6cRGh+iIEIJGPQQCx9Le/S28Htnc5zoR7BiGTRZSmWouVH27Q6xNkqH3rGeojh5zkGohzGINwVpxFVKtKc0IkYnWaI9geWUUleaJ364ijCpGeND9mbdbIly8U7242vaA26dYCavKj22Zmr32wJKDmkkmZZ/SIai4V6plE0Yk9WETThD8kHr7JJHEn506oBqUzpOVlCZiuOCWwTQSPhAMlEmuZ/JeUwe2Bh5D6S03+Had6evoTLu4Fa7UtjLRI7zmK7ToNZVFX2fwk0HxDyZGYKgcpyytcQwcRlGD7U7onuAVaozM219oeMfcuJyGIKYPV35dilpA2GSZglZZoEK/uER/9Jj7F3cDG/DsTwmRsDVIPZF2+tozwFMyNgBUWt1pu1b51BnD/tw6B/AGiijTYDaQ1f+a9mN7YATW/yX24/r+ErA8=
